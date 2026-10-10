@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a1620" />
+    <meta name="description" content="桂月庭 · 一座可以走近的中秋庭院。看满月映水，听风过桂枝。" />
+    <title>Moonlit Courtyard · 桂月庭</title>
+    <link rel="icon" type="image/svg+xml" href="/moon.svg" />
+  </head>
+  <body>
+    <canvas id="courtyard" aria-label="中秋赏月三维庭院。拖动旋转，滚轮或双指缩放。点击天空放烟花，点击水面跃鱼，点击树叶摇树落叶。"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <header class="masthead">
+      <div class="season"><span class="tiny-moon"></span>中秋 · 月圆之夜</div>
+      <div class="header-actions">
+        <button class="icon-button" id="sound" aria-label="开启庭院环境音" aria-pressed="false" title="环境音">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M11 4 5 9H2v6h3l6 5V4Z"/><path class="sound-off" d="m16 9 5 6m0-6-5 6"/><path class="sound-on" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+        </button>
+        <button class="icon-button" id="fullscreen" aria-label="进入全屏" title="全屏">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>
+        </button>
+      </div>
+    </header>
+    <main class="experience">
+      <div class="poem"><span class="eyebrow">一庭清光 · 半池秋色</span><h1>吾心自有光明月，<br />千古团圆永不缺</h1><p>把忙碌留在院外，让月光慢一点。</p></div>
+      <aside class="settings" aria-label="庭院氛围调节">
+        <button class="settings-heading" id="settings-toggle" aria-expanded="true" aria-controls="settings-content"><span><span class="settings-symbol" aria-hidden="true">☾</span>此刻的庭院</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="m5 12 5-5 5 5"/></svg></button>
+        <div id="settings-content">
+          <p class="settings-caption">随心调一盏灯，一片月色。</p>
+          <div class="slider-row"><label for="moonlight">月光<span>MOONLIGHT</span></label><output for="moonlight" id="moonlight-value">100%</output><input id="moonlight" type="range" min="0" max="200" step="1" value="100" /></div>
+          <div class="slider-row"><label for="lanterns">灯火<span>LANTERNS</span></label><output for="lanterns" id="lanterns-value">100%</output><input id="lanterns" type="range" min="0" max="200" step="1" value="100" /></div>
+          <div class="slider-row"><label for="mist">水雾<span>WATER MIST</span></label><output for="mist" id="mist-value">55%</output><input id="mist" type="range" min="0" max="100" step="1" value="55" /></div>
+          <div class="quality-row"><label for="quality">画质</label><select id="quality"><option value="auto">自动适配</option><option value="high">精致</option><option value="balanced">均衡</option><option value="low">轻盈</option></select></div>
+          <button class="reset-button" id="reset"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 6a7 7 0 1 1-1 7M4 2v5h5"/></svg>回到初见<span>重置视角</span></button>
+        </div>
+      </aside>
+    </main>
+    <footer class="footer">
+      <div class="view-presets" role="group" aria-label="观景视角"><button data-view="courtyard" aria-pressed="true">赏月<span>01</span></button><button data-view="water" aria-pressed="false">临水<span>02</span></button><button data-view="pavilion" aria-pressed="false">入亭<span>03</span></button></div>
+      <div class="interaction-hint"><svg viewBox="0 0 20 24" fill="none" stroke="currentColor"><rect x="4" y="2" width="12" height="19" rx="6"/><path d="M10 5v5"/></svg><span class="desktop-hint">拖动环顾 · 滚轮缩放 · 点天空放烟花 · 点水跃鱼 · 点树落叶</span><span class="mobile-hint">滑动环顾 · 双指缩放 · 点天空、水面、树叶</span></div>
+      <span class="footer-note">但愿人长久<span class="note-dot"></span>千里共婵娟</span>
+    </footer>
+    <div id="loading" class="loading"><div class="loading-moon"></div><span>月色正在入庭</span><small>PREPARING YOUR QUIET MOMENT</small></div>
+    <div id="error" class="error" hidden><h2>月色暂未入庭</h2><p id="error-message">当前浏览器无法启动 3D 场景，请使用支持 WebGL 2 的现代浏览器。</p><button onclick="location.reload()">重新载入</button></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
